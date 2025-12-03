@@ -1,0 +1,66 @@
+<div class="simulation-container">
+    <!-- TOP MODULE BAR with 5 SCENES -->
+    <div class="top-module-bar">
+        <div class="module-tabs">
+            <button class="tab-button active" data-tab="scene1">Distance vs Displacement</button>
+            <button class="tab-button" data-tab="scene2">Speed vs Velocity</button>
+            <button class="tab-button" data-tab="scene3">Linear Motion</button>
+            <button class="tab-button" data-tab="scene4">Graphical Proofs</button>
+            <button class="tab-button" data-tab="scene5">Circular Motion</button>
+        </div>
+    </div>
+
+    <!-- MAIN TWO-PANE LAYOUT -->
+    <div class="main-layout">
+        <!-- LEFT PANE (Simulation Space) -->
+        <div id="left-pane" class="pane">
+            <div id="scene1-view" class="simulation-view active"><canvas id="scene1-canvas"></canvas></div>
+            <div id="scene2-view" class="simulation-view"><canvas id="scene2-canvas"></canvas></div>
+            <div id="scene3-view" class="simulation-view"><canvas id="scene3-canvas"></canvas></div>
+            <div id="scene4-view" class="simulation-view">
+                <canvas id="scene4-st-canvas"></canvas>
+                <canvas id="scene4-vt-canvas"></canvas>
+            </div>
+            <div id="scene5-view" class="simulation-view"><canvas id="scene5-canvas"></canvas></div>
+        </div>
+
+        <!-- RIGHT PANE (Controls and Data) -->
+        <div id="right-pane" class="pane">
+            <!-- Global Controls will be adjusted or moved as needed per scene -->
+            <div class="controls-section" id="global-controls">
+                 <h4>Global Parameter Controls</h4>
+                <div class="control-item">
+                    <label for="initial-velocity">Initial Velocity (u): -50 to 50 m/s</label>
+                    <input type="range" id="initial-velocity-slider" min="-50" max="50" value="0" step="1">
+                    <input type="number" id="initial-velocity-input" min="-50" max="50" value="0">
+                </div>
+                <div class="control-item">
+                    <label for="uniform-acceleration">Acceleration (a): -10 to 10 m/s²</label>
+                    <input type="range" id="uniform-acceleration-slider" min="-10" max="10" value="2" step="0.1">
+                    <input type="number" id="uniform-acceleration-input" min="-10" max="10" value="2">
+                </div>
+                 <div class="control-item">
+                    <label for="simulation-time">Simulation Time (Tmax): 0 to 30 s</label>
+                    <input type="range" id="simulation-time-slider" min="0" max="30" value="10" step="1">
+                    <input type="number" id="simulation-time-input" min="0" max="30" value="10">
+                </div>
+                <div class="action-buttons">
+                    <button id="start-stop-button">START</button>
+                    <button id="reset-button">RESET</button>
+                </div>
+            </div>
+
+            <!-- Multi-Style Thinking Panel -->
+            <div class="info-panel" id="multi-style-thinking-panel">
+                <h4>Multi-Style Thinking</h4>
+                <div id="multi-style-content"></div>
+            </div>
+
+            <!-- Lab Challenges Panel -->
+            <div class="info-panel" id="lab-challenges-panel">
+                <h4>Lab Challenges</h4>
+                <div id="lab-challenges-content"></div>
+            </div>
+        </div>
+    </div>
+</div>
