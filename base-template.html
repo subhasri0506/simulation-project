@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tarcin Simulation Base Template</title>
+  <title>Motion Simulation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@
       padding: 32px;
       box-shadow: var(--shadow);
       border: 1px solid var(--color-border);
-      max-width: 800px;
+      max-width: 1400px;
       margin: 0 auto;
       position: relative;
       transition: 0.3s ease;
@@ -61,70 +61,64 @@
       z-index: 10;
     }
     .simulation-panel {
-      background: linear-gradient(135deg, rgba(0,120,255,0.05), rgba(0,212,255,0.05));
-      border: 2px dashed var(--color-border);
+      border: 2px solid var(--color-border);
       border-radius: 12px;
-      padding: 24px;
+      padding: 0;
       text-align: center;
-      color: #94a3b8;
-      font-style: italic;
       margin: 16px 0;
-      min-height: 200px;
+      min-height: 600px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h2 class="card-title">Tarcin Simulation Portal</h2>
-    <p style="margin-bottom: 16px;">Your simulation will load below automatically.</p>
+    <h2 class="card-title">Chapter 7: Motion – Kinematics and Graphical Analysis</h2>
+    <p style="margin-bottom: 16px;">A traffic engineer must analyze the performance of a new electric vehicle model, needing to accurately measure and graph its distance, displacement, speed, velocity, and acceleration during various real-world tests, including straight-line acceleration and curve maneuvering.</p>
     <button class="theme-toggle-card" id="theme-toggle-card"><span id="theme-icon">🌙</span></button>
     <div class="simulation-panel" id="simulation-panel">
-      <p>Loading simulation...</p>
+      <div class="loader"></div>
     </div>
   </div>
   <link rel="stylesheet" href="simulation.css">
-  <script src="simulation.js" defer></script>
- <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const themeToggleCard = document.getElementById('theme-toggle-card');
-  const themeIcon = document.getElementById('theme-icon');
-  const root = document.documentElement;
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  root.setAttribute('data-theme', savedTheme);
-  themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
-  themeToggleCard.addEventListener('click', () => {
-    const currentTheme = root.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', newTheme);
-    themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-    localStorage.setItem('theme', newTheme);
-  });
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const themeToggleCard = document.getElementById('theme-toggle-card');
+      const themeIcon = document.getElementById('theme-icon');
+      const root = document.documentElement;
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      root.setAttribute('data-theme', savedTheme);
+      themeIcon.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+      themeToggleCard.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', newTheme);
+        themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        localStorage.setItem('theme', newTheme);
+      });
 
-  // ✅ Load simulation.html first
-  fetch('./simulation.html')
-    .then(response => response.text())
-    .then(data => {
-      const panel = document.getElementById('simulation-panel');
-      panel.innerHTML = data;
+      fetch('./simulation.html')
+        .then(response => response.text())
+        .then(data => {
+          const panel = document.getElementById('simulation-panel');
+          panel.innerHTML = data;
 
-      // ✅ Then dynamically load simulation.js
-      const script = document.createElement('script');
-      script.src = 'simulation.js';
-      script.onload = () => console.log('✅ Simulation loaded successfully');
-      script.onerror = () => console.error('❌ Failed to load simulation.js');
-      document.body.appendChild(script);
-    })
-    .catch(err => {
-      console.error('Simulation load error:', err);
-      document.getElementById('simulation-panel').innerHTML =
-        '<p style="color:#ff5252;">Failed to load simulation.</p>';
+          const script = document.createElement('script');
+          script.src = 'simulation.js';
+          script.onload = () => console.log('✅ Simulation loaded successfully');
+          script.onerror = () => console.error('❌ Failed to load simulation.js');
+          document.body.appendChild(script);
+        })
+        .catch(err => {
+          console.error('Simulation load error:', err);
+          document.getElementById('simulation-panel').innerHTML =
+            '<p style="color:#ff5252;">Failed to load simulation.</p>';
+        });
     });
-});
-</script>
-
+  </script>
 </body>
 </html>
